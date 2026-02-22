@@ -31,20 +31,20 @@ input_df = pd.DataFrame({
 })
 
 # ทำ dummy เหมือนตอน train
-if input_df['Customer Type'] == "Loyal Customer" :
+if input_df.loc[0, 'Customer Type'] == "Loyal Customer" :
     input_df['Customer Type_disloyal Customer'] = 0
 else :
     input_df['Customer Type_disloyal Customer'] = 1
     
-if input_df['Type of Travel'] == "Business travel" :
+if input_df.loc[0, 'Type of Travel'] == "Business travel" :
     input_df['Type of Travel_Personal Travel'] = 0
 else :
     input_df['Type of Travel_Personal Travel'] = 1
 
-if input_df['Class'] == "Business" :
+if input_df.loc[0, 'Class'] == "Business" :
     input_df['Class_Eco'] = 0
     input_df['Class_Eco Plus'] = 0
-elif input_df['Class'] == "Eco" :
+elif input_df.loc[0, 'Class'] == "Eco" :
     input_df['Class_Eco'] = 1
     input_df['Class_Eco Plus'] = 0
 else :
@@ -79,4 +79,5 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
 
