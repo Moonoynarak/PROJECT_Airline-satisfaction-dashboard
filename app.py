@@ -31,11 +31,26 @@ input_df = pd.DataFrame({
 })
 
 # ทำ dummy เหมือนตอน train
-input_df = pd.get_dummies(
-    input_df,
-    columns=['Customer Type', 'Type of Travel','Class'],
-    drop_first=True
-)
+if input_df['Customer Type'] == "Loyal Customer" :
+    input_df['Customer Type_disloyal Customer'] = 0
+else :
+    input_df['Customer Type_disloyal Customer'] = 1
+    
+if input_df['Type of Travel'] == "Business travel" :
+    input_df['Type of Travel_Personal Travel'] = 0
+else :
+    input_df['Type of Travel_Personal Travel'] = 1
+
+if input_df['Class'] == "Business" :
+    input_df['Class_Eco'] = 0
+    input_df['Class_Eco Plus'] = 0
+elif input_df['Class'] == "Eco" :
+    input_df['Class_Eco'] = 1
+    input_df['Class_Eco Plus'] = 0
+else :
+    input_df['Class_Eco'] = 0
+    input_df['Class_Eco Plus'] = 1
+
 
 # เติมคอลัมน์ที่ขาด
 for col in feature_columns:
@@ -64,3 +79,4 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
