@@ -36,7 +36,8 @@ st.bar_chart(delay_avg)
 
 st.divider()
 # Section 2
-st.header("🔹Interactive Filter : Bar Chart of Satisfaction")
+st.header("🔹Interactive Filter")
+st.subheader("Bar Chart of Satisfaction")
 
 selected_class = st.selectbox(
     "Select Class",
@@ -57,10 +58,18 @@ st.write("Filtered Data Count:", len(filtered_df))
 st.bar_chart(filtered_df["satisfaction"].value_counts())
 st.divider()
 
+st.subheader("Distribution of Data by Satisfaction")
+feature_columns = pickle.load(open("features.pkl", "rb"))
+selected_col = st.selectbox(
+    "Select Data",
+    feature_columns
+)
+sns.boxplot(x='satisfaction', y=selected_col, data=df)
+
 # โหลดของที่เซฟไว้
 model = pickle.load(open("model.pkl", "rb"))
 scaler = pickle.load(open("scaler.pkl", "rb"))
-feature_columns = pickle.load(open("features.pkl", "rb"))
+
 
 st.title("🔹 Airline Satisfaction Prediction")
 
@@ -151,6 +160,7 @@ if st.button("Predict"):
 
         st.error("Prediction: Not Satisfied 😕")
 
+st.divider()
 st.subheader("Top 10 Feature Importance")
 
 importances = model.feature_importances_
@@ -162,6 +172,7 @@ importance_df = pd.DataFrame({
 }).sort_values(by="Importance", ascending=False)
 top10 = importance_df.head(10)
 st.bar_chart(top10.set_index("Feature"))
+
 
 
 
