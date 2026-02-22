@@ -14,7 +14,7 @@ st.header("🔹 Section 1: Dataset Overview")
 col1, col2 = st.columns(2)
 
 # จำนวนข้อมูล
-col1.metric("Total Passengers", len(df))
+col1.metric("Total Assessors", len(df))
 
 # Pie Chart
 satisfaction_counts = df["satisfaction"].value_counts()
@@ -23,7 +23,8 @@ fig, ax = plt.subplots()
 ax.pie(
     satisfaction_counts,
     labels=satisfaction_counts.index,
-    autopct='%1.1f%%'
+    autopct='%1.1f%%',
+    colors=plt.cm.Pastel2.colors
 )
 ax.set_title("Satisfaction Distribution")
 
@@ -122,6 +123,7 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
 
 
 
