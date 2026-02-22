@@ -65,7 +65,16 @@ selected_col = st.selectbox(
     "Select Data",
     feature_columns
 )
-sns.boxplot(x='satisfaction', y=selected_col, data=df)
+fig, ax = plt.subplots()
+
+sns.boxplot(
+    x='satisfaction',
+    y=selected_col,
+    data=df,
+    ax=ax
+)
+
+st.pyplot(fig)
 
 # โหลดของที่เซฟไว้
 model = pickle.load(open("model.pkl", "rb"))
@@ -173,6 +182,7 @@ importance_df = pd.DataFrame({
 }).sort_values(by="Importance", ascending=False)
 top10 = importance_df.head(10)
 st.bar_chart(top10.set_index("Feature"))
+
 
 
 
