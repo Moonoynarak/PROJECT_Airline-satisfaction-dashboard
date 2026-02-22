@@ -69,7 +69,7 @@ else :
 # เติมคอลัมน์ที่ขาด
 for col in feature_columns:
     if col not in input_df.columns:
-        input_df[col] = 0
+        input_df[col] = 4
 
 # เรียงคอลัมน์ให้ตรง
 input_df = input_df[feature_columns]
@@ -95,6 +95,7 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
 
 
 
