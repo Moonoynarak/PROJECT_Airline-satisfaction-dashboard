@@ -35,6 +35,24 @@ st.subheader("Average Arrival Delay by Satisfaction")
 delay_avg = df.groupby("satisfaction")["Arrival Delay in Minutes"].mean()
 st.bar_chart(delay_avg)
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+st.subheader("Correlation Heatmap")
+
+numeric_df = df.select_dtypes(include=['int64', 'float64'])
+corr = numeric_df.corr()
+fig, ax = plt.subplots(figsize=(10, 6))
+
+sns.heatmap(
+    corr,
+    annot=True, 
+    cmap="coolwarm",
+    fmt=".2f",
+    ax=ax
+)
+st.pyplot(fig)
+
 st.divider()
 # Section 2
 st.header("🔹Interactive Filter")
@@ -182,6 +200,7 @@ importance_df = pd.DataFrame({
 }).sort_values(by="Importance", ascending=False)
 top10 = importance_df.head(10)
 st.bar_chart(top10.set_index("Feature"))
+
 
 
 
