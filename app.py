@@ -30,6 +30,27 @@ ax.set_title("Satisfaction Distribution")
 
 col2.pyplot(fig)
 
+# Section 2
+st.header("🔹 Section 2: Interactive Filter")
+
+selected_class = st.selectbox(
+    "Select Class",
+    df["Class"].unique()
+)
+
+max_delay = st.slider(
+    "Maximum Arrival Delay (minutes)",
+    0, 300, 60
+)
+
+filtered_df = df[
+    (df["Class"] == selected_class) &
+    (df["Arrival Delay in Minutes"] <= max_delay)
+]
+
+st.write("Filtered Data Count:", len(filtered_df))
+st.bar_chart(filtered_df["satisfaction"].value_counts())
+
 # โหลดของที่เซฟไว้
 model = pickle.load(open("model.pkl", "rb"))
 scaler = pickle.load(open("scaler.pkl", "rb"))
@@ -123,6 +144,7 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
 
 
 
