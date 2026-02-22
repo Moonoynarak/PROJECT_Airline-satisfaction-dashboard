@@ -1,6 +1,33 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import matplotlib.pyplot as plt
+
+# Section 1 - Dataset Overview
+# โหลดข้อมูล
+df = pd.read_csv("Airline_customer_satisfaction.csv")
+
+st.title("✈ Airline Satisfaction Dashboard")
+
+st.header("🔹 Section 1: Dataset Overview")
+
+col1, col2 = st.columns(2)
+
+# จำนวนข้อมูล
+col1.metric("Total Passengers", len(df))
+
+# Pie Chart
+satisfaction_counts = df["satisfaction"].value_counts()
+
+fig, ax = plt.subplots()
+ax.pie(
+    satisfaction_counts,
+    labels=satisfaction_counts.index,
+    autopct='%1.1f%%'
+)
+ax.set_title("Satisfaction Distribution")
+
+col2.pyplot(fig)
 
 # โหลดของที่เซฟไว้
 model = pickle.load(open("model.pkl", "rb"))
@@ -95,6 +122,7 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
 
 
 
