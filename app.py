@@ -9,7 +9,7 @@ df = pd.read_csv("Airline_customer_satisfaction.csv")
 
 st.title("✈ Airline Satisfaction Dashboard")
 
-st.header("🔹 Section 1: Dataset Overview")
+st.header("🔹Dataset Overview")
 
 col1, col2 = st.columns(2)
 
@@ -31,7 +31,7 @@ ax.set_title("Satisfaction Distribution")
 col2.pyplot(fig)
 st.divider()
 # Section 2
-st.header("🔹 Section 2: Interactive Filter")
+st.header("🔹Interactive Filter : Bar Chart of Satisfaction")
 
 selected_class = st.selectbox(
     "Select Class",
@@ -51,12 +51,13 @@ filtered_df = df[
 st.write("Filtered Data Count:", len(filtered_df))
 st.bar_chart(filtered_df["satisfaction"].value_counts())
 st.divider()
+
 # โหลดของที่เซฟไว้
 model = pickle.load(open("model.pkl", "rb"))
 scaler = pickle.load(open("scaler.pkl", "rb"))
 feature_columns = pickle.load(open("features.pkl", "rb"))
 
-st.title("✈ Airline Satisfaction Prediction")
+st.title("🔹 Airline Satisfaction Prediction")
 
 # รับค่า input
 age = st.slider("Age", 10, 80, 30)
@@ -144,6 +145,7 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
 
 
 
