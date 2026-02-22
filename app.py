@@ -15,6 +15,12 @@ distance = st.slider("Flight Distance (km)", 100, 5000, 1000)
 dep_delay = st.slider("Departure Delay (min)", 0, 300, 10)
 arr_delay = st.slider("Arrival Delay (min)", 0, 300, 5)
 seat_c = st.slider("Seat Comfort (Score)", 0, 5, 5)
+inf_e = st.slider("Inflight Entertainment (Score)", 0, 5, 5)
+eo_ob = st.slider("Ease of Online booking (Score)", 0, 5, 5)
+on_sup = st.slider("Online Support (Score)", 0, 5, 5)
+ob_ser = st.slider("On-board Service (Score)", 0, 5, 5)
+f_d = st.slider("Food and Drink (Score)", 0, 5, 5)
+lr_ser = st.slider("Leg Room Service (Score)", 0, 5, 5)
 
 customer_type = st.selectbox("Customer Type", ["Loyal Customer", "disloyal Customer"])
 travel_type = st.selectbox("Type of Travel", ["Business travel", "Personal Travel"])
@@ -28,8 +34,14 @@ input_df = pd.DataFrame({
     'Arrival Delay in Minutes': [arr_delay],
     'Customer Type': [customer_type],
     'Type of Travel': [travel_type],
-    'Class': [travel_class]
-    'Seat comfort' : [seat_c]
+    'Class': [travel_class],
+    'Seat comfort' : [seat_c],
+    'Inflight entertainment' : [inf_e],
+    'Ease of Online booking' : [eo_ob],
+    'Online support' : [on_sup],
+    'On-board service' : [ob_ser],
+    'Food and drink' : [f_d],
+    'Leg room service' : [lr_ser]
 })
 
 # ทำ dummy เหมือนตอน train
@@ -83,6 +95,7 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
 
 
 
