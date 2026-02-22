@@ -70,6 +70,8 @@ num_cols = [
 
 input_df[num_cols] = scaler.transform(input_df[num_cols])
 st.write(input_df)
+st.write(type(model))
+st.write(model)
 # predict
 if st.button("Predict"):
     prediction = model.predict(input_df)
@@ -79,5 +81,6 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
 
 
