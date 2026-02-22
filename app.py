@@ -29,7 +29,7 @@ ax.pie(
 ax.set_title("Satisfaction Distribution")
 
 col2.pyplot(fig)
-
+st.divider()
 # Section 2
 st.header("🔹 Section 2: Interactive Filter")
 
@@ -50,7 +50,7 @@ filtered_df = df[
 
 st.write("Filtered Data Count:", len(filtered_df))
 st.bar_chart(filtered_df["satisfaction"].value_counts())
-
+st.divider()
 # โหลดของที่เซฟไว้
 model = pickle.load(open("model.pkl", "rb"))
 scaler = pickle.load(open("scaler.pkl", "rb"))
@@ -144,6 +144,7 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
 
 
 
