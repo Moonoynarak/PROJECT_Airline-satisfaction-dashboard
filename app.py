@@ -158,11 +158,6 @@ importance_df = pd.DataFrame({
 top10 = importance_df.head(10)
 st.bar_chart(top10.set_index("Feature"))
 
-fig, ax = plt.subplots()
-ax.barh(top10["Feature"], top10["Importance"])
-ax.invert_yaxis()
-
-st.pyplot(fig)
 
 
 
