@@ -29,6 +29,11 @@ ax.pie(
 ax.set_title("Satisfaction Distribution")
 
 col2.pyplot(fig)
+
+st.subheader("Average Arrival Delay by Satisfaction")
+delay_avg = df.groupby("satisfaction")["Arrival Delay in Minutes"].mean()
+st.bar_chart(delay_avg)
+
 st.divider()
 # Section 2
 st.header("🔹Interactive Filter : Bar Chart of Satisfaction")
@@ -146,7 +151,7 @@ if st.button("Predict"):
 
         st.error("Prediction: Not Satisfied 😕")
 
-st.subheader("Feature Importance")
+st.subheader("Top 10 Feature Importance")
 
 importances = model.feature_importances_
 feature_names = feature_columns
@@ -157,6 +162,7 @@ importance_df = pd.DataFrame({
 }).sort_values(by="Importance", ascending=False)
 top10 = importance_df.head(10)
 st.bar_chart(top10.set_index("Feature"))
+
 
 
 
