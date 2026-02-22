@@ -133,7 +133,7 @@ num_cols = [
 ]
 
 input_df[num_cols] = scaler.transform(input_df[num_cols])
-st.write(input_df)
+#st.write(input_df)
 #st.write(type(model))
 #st.write(model)
 # predict
@@ -146,6 +146,17 @@ if st.button("Predict"):
 
         st.error("Prediction: Not Satisfied 😕")
 
+st.subheader("Feature Importance")
+
+importances = model.feature_importances_
+feature_names = feature_columns
+
+importance_df = pd.DataFrame({
+    "Feature": feature_names,
+    "Importance": importances
+}).sort_values(by="Importance", ascending=False)
+top10 = importance_df.head(10)
+st.bar_chart(top10.set_index("Feature"))
 
 
 
