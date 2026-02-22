@@ -11,9 +11,10 @@ st.title("✈ Airline Satisfaction Prediction")
 
 # รับค่า input
 age = st.slider("Age", 10, 80, 30)
-distance = st.slider("Flight Distance", 100, 5000, 1000)
+distance = st.slider("Flight Distance (km)", 100, 5000, 1000)
 dep_delay = st.slider("Departure Delay (min)", 0, 300, 10)
 arr_delay = st.slider("Arrival Delay (min)", 0, 300, 5)
+seat_c = st.slider("Seat Comfort (Score)", 0, 5, 5)
 
 customer_type = st.selectbox("Customer Type", ["Loyal Customer", "disloyal Customer"])
 travel_type = st.selectbox("Type of Travel", ["Business travel", "Personal Travel"])
@@ -28,6 +29,7 @@ input_df = pd.DataFrame({
     'Customer Type': [customer_type],
     'Type of Travel': [travel_type],
     'Class': [travel_class]
+    'Seat comfort' : [seat_c]
 })
 
 # ทำ dummy เหมือนตอน train
@@ -81,6 +83,7 @@ if st.button("Predict"):
     else:
 
         st.error("Prediction: Not Satisfied 😕")
+
 
 
 
