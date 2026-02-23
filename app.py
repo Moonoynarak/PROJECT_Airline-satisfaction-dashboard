@@ -81,7 +81,7 @@ st.subheader("Distribution of Data by Satisfaction")
 feature_columns = pickle.load(open("features.pkl", "rb"))
 selected_col = st.selectbox(
     "Select Data",
-    feature_columns
+    X.columns
 )
 fig, ax = plt.subplots()
 
@@ -200,6 +200,7 @@ importance_df = pd.DataFrame({
 }).sort_values(by="Importance", ascending=False)
 top10 = importance_df.head(10)
 st.bar_chart(top10.set_index("Feature"))
+
 
 
 
